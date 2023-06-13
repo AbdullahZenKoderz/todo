@@ -13,7 +13,7 @@ import { UserService } from '../Users/Services/user.service';
   imports: [
     TypeOrmModule.forFeature([UserEntity, TodoEntity]),
     JwtModule.register({
-      secret: process.env.JWT_SECRET_KEY,
+      secret: "secretKey",
       signOptions: { expiresIn: '1d' },
     }),
   ],
