@@ -1,0 +1,10 @@
+export enum USER_STATUS {
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
+}
+
+export enum TODO_STATUS {
+  PENDING = 'PENDING',
+  INPROGRESS = 'INPROGRESS',
+  DONE = 'DONE',
+}
