@@ -12,7 +12,7 @@ import { forDatabaseMySqlAsyncConfig } from './Config/Database/orm.config';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
-    // TypeOrmModule.forRootAsync(forDatabaseMySqlAsyncConfig),
+    TypeOrmModule.forRootAsync(forDatabaseMySqlAsyncConfig),
     // MODULES
     AuthModule,
     UserModule,

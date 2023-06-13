@@ -7,19 +7,16 @@ import {
 export default class TypeOrmConfig {
   static getMySqlConfig(configService: ConfigService): TypeOrmModuleOptions {
     return {
-      type: 'mssql',
-      host: 'localhost',
-      port: 1433,
-      username:"root",
-      password:"123456",
-      database: 'todoDB',
+      type: 'mysql',
+      host: configService.get('HOST'),
+      port: configService.get('SQL_PORT'),
+      username: configService.get('USER_NAME'),
+      password: configService.get('PASSWORD'),
+      database: configService.get('DATABASE'),
       // entities:[],
       synchronize: true,
-      // debug : false,
+      debug: false,
       autoLoadEntities: true,
-      extra: {
-        trustServerCertificate: true,
-      }
     };
   }
 }

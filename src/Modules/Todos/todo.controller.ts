@@ -27,9 +27,9 @@ export class TodoController {
   }
 
   @HttpCode(HttpStatus.CREATED)
-  @Post('/assignTodo')
+  @Post('/assignTodo/:id')
   @UsePipes(ValidationPipe)
-  async assignTodo() {
+  async assignTodo(@Param() param) {
     const assignTodo = await this.todoService.assignTodo();
     return assignTodo;
   }
