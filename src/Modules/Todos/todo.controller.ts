@@ -1,4 +1,5 @@
 import {
+  Body,
   Controller,
   Delete,
   Get,
@@ -7,22 +8,28 @@ import {
   Param,
   Post,
   Put,
+  Req,
+  UseGuards,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { TodoService } from './Services/todo.service';
+import { CreateTodoDto } from './DTO/createTodo.dto';
+import { ExtendedRequest } from '../Users/Interfaces/extended-request.interface';
+import { JwtAwtGuard } from 'src/Utilities/jwtAuthGuard';
 
 @ApiTags('Todo')
 @Controller('api/todo')
 export class TodoController {
-  constructor(private todoService: TodoService) {}
+  constructor(private todoService: TodoService) { }
 
   @HttpCode(HttpStatus.CREATED)
-  @Post()
+  @Post("/create")
   @UsePipes(ValidationPipe)
-  async createTodo() {
-    const newTodo = await this.todoService.createTodo();
+  @UseGuards(JwtAwtGuard)
+  async createTodo(@Body() createTodoDto: CreateTodoDto, @Req() req: ExtendedRequest) {
+    const newTodo = await this.todoService.createTodo(req, createTodoDto);
     return newTodo;
   }
 

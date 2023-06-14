@@ -18,7 +18,7 @@ export class TodoEntity {
   @Column({ type: 'varchar' })
   name: string;
 
-  @Column({ type: 'varchar', unique: true })
+  @Column({ type: 'varchar' })
   description: string;
 
   @Column({
@@ -37,5 +37,10 @@ export class TodoEntity {
   createdAt: Date;
 
   @ManyToOne(() => UserEntity, (user) => user.todos, { onDelete: 'CASCADE' })
-  user: UserEntity;
+  assinged_to: UserEntity;
+
+  @ManyToOne(() => UserEntity)
+  createdBy: UserEntity;
 }
+
+

@@ -22,5 +22,3 @@ import { JwtStrategy } from "../../Utilities/jwtStrategy";
 })
 export class UserModule { }
 
-
-console.log("process.env.JWT_SECRET_KEY", process.env.JWT_SECRET_KEY)
