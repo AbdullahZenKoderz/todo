@@ -9,7 +9,9 @@ import {
   Put,
   Query,
   Req,
+  UploadedFile,
   UseGuards,
+  UseInterceptors,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
@@ -20,11 +22,12 @@ import { JwtAwtGuard } from 'src/Utilities/jwtAuthGuard';
 import { Request } from 'express';
 import { ExtendedRequest } from './Interfaces/extended-request.interface';
 import { UpdateUserDTO } from './DTO/updateUser.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @ApiTags('User')
 @Controller('api/user')
 export class UserController {
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService) {}
 
   @HttpCode(HttpStatus.CREATED)
   @Post('/auth')
@@ -62,8 +65,18 @@ export class UserController {
   @Put('/update')
   @UsePipes(ValidationPipe)
   @UseGuards(JwtAwtGuard)
-  async updateUser(@Req() req: ExtendedRequest, @Body() updateUserDTO: UpdateUserDTO) {
+  async updateUser(
+    @Req() req: ExtendedRequest,
+    @Body() updateUserDTO: UpdateUserDTO,
+  ) {
     const user = await this.userService.updateUser(req, updateUserDTO);
     return user;
+  }
+  @HttpCode(HttpStatus.OK)
+  @Post('/upload/profilePicture')
+  @UseInterceptors(FileInterceptor('profilePicture'))
+  @UseGuards(JwtAwtGuard)
+  async uploadProfilePicture(@UploadedFile() file: Express.Multer.File) {
+    console.log(file);
   }
 }
