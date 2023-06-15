@@ -9,5 +9,5 @@ export class CreateTodoDto {
 
   @IsOptional()
   @IsNotEmpty()
-  assinged_to?: number[];
+  assingedTo?: number;
 }

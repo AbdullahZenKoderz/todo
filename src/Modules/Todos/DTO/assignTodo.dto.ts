@@ -1,8 +1,11 @@
 import { Expose } from 'class-transformer';
-import { IsEmail, isEnum, isNotEmpty, IsNotEmpty, MinLength } from 'class-validator';
+import { IsEmail, isEnum, isNotEmpty, IsNotEmpty, IsNumber, MinLength } from 'class-validator';
 
-export class CreateTodoDto {
+export class AssignTodoDTO {
 
     @IsNotEmpty()
-    assinged_to: number[];
+    todoId:number
+
+    @IsNotEmpty()
+    userId:number
 }

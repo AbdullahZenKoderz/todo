@@ -39,6 +39,6 @@ export class UserEntity {
   })
   createdAt: Date;
 
-  @OneToMany(() => TodoEntity, (todo) => todo.assinged_to)
+  @OneToMany(() => TodoEntity, (todo) => todo.assingedTo)
   todos: TodoEntity[];
 }

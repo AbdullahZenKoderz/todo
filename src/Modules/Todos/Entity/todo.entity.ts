@@ -37,7 +37,7 @@ export class TodoEntity {
   createdAt: Date;
 
   @ManyToOne(() => UserEntity, (user) => user.todos, { onDelete: 'CASCADE' })
-  assinged_to: UserEntity;
+  assingedTo: UserEntity;
 
   @ManyToOne(() => UserEntity)
   createdBy: UserEntity;
